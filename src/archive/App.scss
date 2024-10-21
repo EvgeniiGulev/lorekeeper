@@ -1,0 +1,295 @@
+$default-font: "Manrope", sans-serif;
+$deep-blue: #1f3c88; // Deep Blue for accents and headers
+$coral: #ff6f61; // Coral for highlights or buttons
+$charcoal: #333333; // Charcoal for backgrounds or text
+$light-gray: #e0e0e0; // Light Gray for lighter areas or cards
+$dark-teal: #007b5f; // Dark Teal for elements or borders
+$creamy-white: #fffaf0; // Creamy white for backgrounds or cards
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $default-font;
+  background-image: linear-gradient(to top left, $coral, $creamy-white); // Light gradient background
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  color: $charcoal;
+}
+
+h1,
+h2,
+h3 {
+  color: $deep-blue;
+}
+
+a {
+  color: $coral; // Updated to coral
+  text-decoration: none;
+}
+
+button {
+  background-color: $coral; // Updated to coral
+  color: $charcoal;
+}
+
+ul {
+  list-style: none;
+}
+
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid;
+  border-color: #000 #0000;
+  animation: l1 1s infinite;
+}
+
+@keyframes l1 {
+  to {
+    transform: rotate(0.5turn);
+  }
+}
+
+.home-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .intro-container {
+    max-width: 700px;
+    height: 500px;
+    text-align: center;
+    margin: 0 10px;
+
+    .intro-heading {
+      font-size: 38px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .intro-subtext {
+      font-size: 18px;
+      margin-bottom: 40px;
+      line-height: 1.25;
+      text-align: center;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 20px;
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+
+    .intro-options {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+
+      .intro-option-btn {
+        background-color: $coral; // Updated to coral
+        color: $charcoal;
+        font-weight: 800;
+        padding: 15px 20px;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+          transform: scale(1.1);
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        &:active {
+          transform: scale(1);
+        }
+      }
+    }
+  }
+}
+
+.master-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+
+  .master-heading {
+    font-family: $default-font;
+    font-size: 36px;
+    color: $deep-blue;
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    padding: 10px 0;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 5px;
+      background-color: $coral; // Updated to coral
+      margin-top: 10px;
+      transform: scaleX(1.2);
+    }
+  }
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    list-style: none;
+
+    .card {
+      background: $light-gray;
+      border-radius: 15px;
+      padding: 20px;
+      width: 300px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .card-title {
+        font-size: 24px;
+        color: $deep-blue;
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+
+        &::after {
+          content: "";
+          display: block;
+          width: 50%;
+          height: 4px;
+          background-color: $coral; // Updated to coral
+          margin: 5px auto;
+          transition: width 0.4s ease;
+          transform: scaleX(0);
+          transform-origin: left;
+          z-index: -1;
+        }
+
+        &:hover::after {
+          transform: scaleX(1);
+        }
+      }
+
+      .card-campaign {
+        font-size: 18px;
+        color: $dark-teal;
+        font-weight: 500;
+        margin-top: 10px;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: $deep-blue;
+        }
+      }
+    }
+  }
+}
+
+.characters-container {
+  display: flex;
+  flex-direction: column; /* Stack heading and cards vertically */
+  align-items: center; /* Center content */
+  padding: 20px; /* Add padding */
+  margin: 0 auto; /* Center the container */
+  border-radius: 10px; /* Soft edges */
+}
+
+.character-heading {
+  font-family: $default-font;
+  font-size: 36px;
+  color: $deep-blue;
+  text-align: center;
+  margin-bottom: 30px; /* Space below heading */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  padding: 10px 0;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 5px;
+    background-color: $coral; // Updated to coral
+    margin-top: 10px;
+    transform: scaleX(1.2);
+  }
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping of cards */
+  justify-content: center; /* Center cards */
+  gap: 20px; /* Space between cards */
+  list-style: none; /* Remove default list styles */
+  padding: 0; /* Remove default padding */
+}
+
+.card {
+  background: $light-gray; /* Light gray background */
+  border-radius: 15px; /* Rounded corners */
+  padding: 20px; /* Internal padding */
+  width: 300px; /* Fixed width for cards */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition effects */
+  display: flex; /* Flexbox for internal layout */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  text-align: center; /* Center text */
+  position: relative; /* For pseudo-elements */
+  overflow: hidden; /* Prevent overflow */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+
+  &:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Deep shadow on hover */
+  }
+
+  .card-title {
+    font-size: 24px; /* Title size */
+    color: $deep-blue; /* Deep blue for title */
+    margin-bottom: 10px; /* Space below title */
+    font-weight: bold; /* Bold font for emphasis */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 1px; /* Spacing between letters */
+  }
+
+  .card-class,
+  .card-level {
+    font-size: 18px; /* Font size for details */
+    color: $dark-teal; /* Dark teal for detail text */
+    margin: 5px 0; /* Space above and below */
+  }
+}

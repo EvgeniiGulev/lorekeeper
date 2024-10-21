@@ -1,0 +1,738 @@
+$font-default: "Manrope", sans-serif;
+// Primary Colors
+$primary-main: #90caf9; // Light Blue for primary elements
+$primary-contrast: #ffffff; // White text on primary
+// Secondary Colors
+$secondary-main: #f48fb1; // Pink for secondary elements
+$secondary-contrast: #ffffff; // White text on secondary
+// Background Colors
+$background-default: #121212; // Dark gray background
+$background-paper: #1e1e1e; // Slightly lighter dark gray for cards
+// Text Colors
+$text-primary: #ffffff; // Main text color (white)
+$text-secondary: #b0bec5; // Muted text (grayish blue)
+// Error and Alerts
+$error-main: #f44336; // Red for errors
+$warning-main: #ffa726; // Orange for warnings
+$info-main: #29b6f6; // Blue for information
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Custom Scrollbar Styles
+::-webkit-scrollbar {
+  width: 20px; // Width of the scrollbar
+}
+
+::-webkit-scrollbar-track {
+  background: $background-paper; // Background of the scrollbar track
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $primary-main; // Color of the scrollbar thumb
+  border-radius: 5px; // Rounded edges for the thumb
+  border: 3px solid $background-paper; // Space around the thumb
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: darken($primary-main, 10%); // Darker shade on hover
+}
+body {
+  font-family: $font-default;
+  background-color: $background-default;
+  color: $text-primary;
+}
+
+button {
+  background-color: $primary-main;
+  color: $primary-contrast;
+}
+
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+.card {
+  background-color: $background-paper;
+  color: $text-secondary;
+}
+
+// Applying theme to components
+.home-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 95vh;
+  background-color: $background-default;
+  color: $text-primary;
+  padding: 20px;
+
+  .intro-container {
+    text-align: center;
+    max-width: 700px;
+    background-color: $background-paper;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+    .intro-heading {
+      font-size: 36px;
+      font-family: $font-default;
+      color: $primary-main;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .intro-subtext {
+      font-size: 18px;
+      color: $text-secondary;
+      margin-bottom: 30px;
+      line-height: 1.5;
+      font-style: italic;
+      padding: 0 20px;
+    }
+
+    .intro-options {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+
+      .intro-option-btn {
+        background-color: $primary-main;
+        color: $primary-contrast;
+        font-weight: 600;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+          transform: scale(1.05);
+          box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        &:active {
+          transform: scale(1);
+        }
+      }
+
+      // Button for Dungeon Master path
+      #button-dungeon-master {
+        background-color: $secondary-main;
+        color: $secondary-contrast;
+
+        &:hover {
+          background-color: darken($secondary-main, 10%);
+        }
+      }
+
+      // Button for Adventurer's Path
+      #button-adventurer {
+        background-color: $primary-main;
+        color: $primary-contrast;
+
+        &:hover {
+          background-color: darken($primary-main, 10%);
+        }
+      }
+    }
+  }
+}
+
+// Applying theme to components
+.characters-container {
+  background-color: $background-default;
+  color: $text-primary;
+  padding: 20px;
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .character-heading {
+    font-family: $font-default;
+    font-size: 36px;
+    color: $primary-main;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    position: relative;
+    text-align: center;
+    padding: 10px 0;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 100px;
+      height: 4px;
+      background-color: $primary-main;
+      margin: 10px auto 0 auto;
+    }
+  }
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+
+    .card {
+      background-color: $background-paper;
+      border-radius: 10px;
+      padding: 20px;
+      width: 250px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+      }
+
+      .card-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: $primary-main;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: lighten($primary-main, 10%);
+        }
+      }
+
+      .card-class,
+      .card-level {
+        font-size: 16px;
+        color: $text-secondary;
+        margin: 5px 0;
+      }
+
+      .card-class {
+        font-weight: 500;
+        color: $secondary-main;
+      }
+
+      .card-level {
+        font-weight: 500;
+        color: $primary-main;
+      }
+    }
+  }
+}
+
+// Campaigns Styles
+.master-container {
+  background-color: $background-default;
+  color: $text-primary;
+  padding: 20px;
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .master-heading {
+    font-family: $font-default;
+    font-size: 36px;
+    color: $primary-main;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    position: relative;
+    text-align: center;
+    padding: 10px 0;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 100px;
+      height: 4px;
+      background-color: $primary-main;
+      margin: 10px auto 0 auto;
+    }
+  }
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+
+    .card {
+      background-color: $background-paper;
+      border-radius: 10px;
+      padding: 20px;
+      width: 250px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+      }
+
+      .card-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: $primary-main;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        transition: color 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+          color: lighten($primary-main, 10%);
+        }
+      }
+
+      .card-campaign {
+        font-size: 16px;
+        color: $text-secondary;
+        font-weight: 500;
+        margin-top: 5px;
+        transition: color 0.3s ease;
+        cursor: pointer;
+        &:hover {
+          color: $secondary-main;
+        }
+      }
+    }
+  }
+}
+
+.navbar {
+  background-color: $background-paper; // Use your existing variable for consistency
+  color: $text-primary;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5vh;
+  padding: 0px 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+  .navbar-logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: $primary-main;
+    text-transform: uppercase;
+  }
+
+  .nav-list {
+    display: flex;
+    gap: 20px;
+
+    .nav-link {
+      text-decoration: none;
+      color: $text-primary; // Use your primary text color
+      font-weight: 500;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: lighten($primary-main, 10%);
+      }
+    }
+  }
+
+  .search-container {
+    .search-bar {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: $background-paper;
+      color: $text-primary;
+      outline: none;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+      &::placeholder {
+        color: $text-secondary; // Use your secondary text color
+      }
+    }
+  }
+}
+.character-overview {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  margin: 20px;
+  background-color: $background-paper; // Card background color
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  // Left Section
+  .character-overview-left {
+    flex: 1;
+    padding-right: 20px;
+
+    .character-name {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: $text-primary; // White text
+    }
+
+    .character-overview-text {
+      font-size: 1rem;
+      color: $text-secondary; // Muted text color (grayish blue)
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+  }
+
+  // Right Section (Overview List)
+  .character-overview-right {
+    flex: 1;
+
+    .character-overview-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr; // Two columns for larger screens
+      gap: 10px;
+    }
+
+    .character-overview-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      border: 1px solid $primary-main; // Light blue border for contrast
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+
+      &:nth-child(odd) {
+        background-color: $background-paper; // Slightly lighter background for alternate items
+      }
+
+      .character-overview-title {
+        font-size: 1rem;
+        color: $text-primary; // White for labels
+
+        &:first-child {
+          font-weight: 700;
+          color: $primary-main; // Primary color for actual values (Light blue)
+        }
+      }
+    }
+  }
+
+  // Mobile Responsive Styles
+  @media (max-width: 768px) {
+    flex-direction: column; // Stack left and right sections vertically
+    align-items: center; // Center items for a neat layout
+
+    padding: 15px; // Slightly reduce padding for smaller screens
+    margin: 10px; // Reduce margin
+
+    .character-overview-left,
+    .character-overview-right {
+      flex: none; // Remove flex behavior for full width
+      width: 100%; // Ensure full width on mobile
+      padding-right: 0; // Remove extra padding on right
+      margin-bottom: 15px; // Space between sections
+    }
+
+    .character-overview-list {
+      grid-template-columns: 1fr; // Change to single column for mobile
+      width: 100%; // Full width for the list
+    }
+
+    .character-overview-item {
+      padding: 8px; // Slightly smaller padding for mobile
+      font-size: 0.9rem; // Adjust font size for better readability on smaller screens
+    }
+  }
+
+  // Extra Responsive Styles for devices smaller than 430px
+  @media (max-width: 430px) {
+    padding: 10px; // Reduce padding further for smaller devices
+    margin: 5px; // Reduce margin further
+
+    .character-overview-left,
+    .character-overview-right {
+      width: 100%; // Full width for both sections
+      margin-bottom: 10px; // Slightly less space between sections
+    }
+
+    .character-name {
+      font-size: 1.5rem; // Decrease font size for the character name
+    }
+
+    .character-overview-text {
+      font-size: 0.9rem; // Reduce font size for overview text
+    }
+
+    .character-overview-list {
+      grid-template-columns: 1fr; // Keep single column for the list
+    }
+
+    .character-overview-item {
+      padding: 5px; // Reduce padding for items
+      font-size: 0.8rem; // Further decrease font size for better fit
+      flex-direction: column; // Stack title and value vertically
+
+      .character-overview-title {
+        font-size: 0.8rem; // Adjust title font size for better readability
+      }
+
+      &:nth-child(odd) {
+        background-color: lighten(
+          $background-paper,
+          5%
+        ); // Lighten background for contrast
+      }
+    }
+  }
+}
+
+.character-stats-list {
+  display: flex;
+  justify-content: center; // Centers the stat items
+  flex-wrap: wrap; // Allows the boxes to wrap if needed
+  padding: 0;
+  margin: 20px;
+  gap: 20px;
+  list-style-type: none; // Removes default bullet points
+
+  // Responsive adjustments for smaller devices
+  @media (max-width: 430px) {
+    margin: 10px; // Reduce margin for smaller screens
+    gap: 15px; // Reduce gap between boxes
+  }
+}
+
+.character-stats-item {
+  position: relative;
+  width: 120px; // Ensures all boxes are the same size
+  height: 120px;
+  padding: 10px;
+  border: 1px solid $primary-main;
+  border-radius: 8px;
+  background-color: $background-paper;
+  text-align: center;
+  font-family: $font-default;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .character-stat-value {
+    font-size: 18px; // Size for the ability score value
+    color: $text-primary;
+  }
+
+  .character-stat-modifier {
+    font-size: 22px; // Increased size for the modifier
+    font-weight: bold; // Make it bold for emphasis
+    color: $secondary-main;
+    position: absolute;
+    bottom: -14px; // Moves the modifier slightly outside the container
+    left: 50%;
+    transform: translateX(-50%); // Centers the modifier
+    background-color: $background-paper;
+    padding: 4px 8px; // Slightly increased padding for better readability
+    border-radius: 4px;
+    border: 1px solid $secondary-main;
+  }
+
+  // Responsive adjustments for smaller devices
+  @media (max-width: 430px) {
+    width: 100px; // Decrease width for smaller screens
+    height: 100px; // Decrease height for smaller screens
+    padding: 8px; // Reduce padding
+
+    .character-stat-value {
+      font-size: 16px; // Slightly smaller font for values
+    }
+
+    .character-stat-modifier {
+      font-size: 20px; // Adjust size for modifiers
+      bottom: -10px; // Adjust position
+    }
+  }
+}
+.character-data-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 40px 20px;
+  gap: 20px;
+}
+
+.character-general-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Centering the content
+  padding: 20px;
+  background: $background-paper; // Slightly lighter dark gray for contrast
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  max-width: 400px; // Limit the width
+  width: 100%;
+  margin: 0 auto; // Center the entire container horizontally
+  font-family: $font-default; // Set the font
+
+  // Responsive adjustments for smaller devices
+  @media (max-width: 430px) {
+    padding: 15px; // Reduce padding
+    max-width: 100%; // Allow full width on smaller screens
+  }
+
+  .character-general-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; // Full width to ensure proper spacing
+
+    .character-general-item {
+      display: flex;
+      justify-content: space-between; // Align title and value on opposite sides
+      background: $background-default; // Dark background for each item
+      margin: 10px 0; // Space between items
+      padding: 10px;
+      border-radius: 5px; // Rounded corners
+      color: $text-primary; // Main text color (white)
+
+      .character-general-title {
+        font-weight: bold; // Emphasize the title
+        color: $text-secondary; // Muted color for titles
+      }
+    }
+  }
+
+  .character-money-container {
+    margin-top: 20px; // Space between general data and money section
+    width: 100%; // Full width for the money section
+
+    .character-money-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center; // Space money items evenly
+      align-items: stretch; // Ensures all items stretch to the same height
+      row-gap: 20px; // Space between rows
+      column-gap: 10px; // Space between columns
+      flex-wrap: wrap; // Allow wrapping of items if necessary
+      flex-direction: column-reverse;
+      margin: 0;
+
+      .character-money-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center; // Center text within each item
+        background: $background-default; // Dark background for money items
+        padding: 10px;
+        border-radius: 5px; // Rounded corners
+        color: $text-primary; // Main text color
+        width: 100%; // Fixed width for consistency
+        flex: 0 0 auto; // Prevent flex-grow/shrink for consistent sizing
+
+        .character-money-value {
+          font-size: 1.5em; // Larger font size for the value
+          font-weight: bold; // Emphasize the value
+          color: $primary-main; // Use primary color for value
+        }
+
+        .character-money-type {
+          font-size: 0.9em; // Smaller font size for the type
+          color: $text-secondary; // Muted color for the type
+        }
+      }
+    }
+  }
+}
+
+.character-inventory-container {
+  padding: 20px;
+  background: $background-paper; // Slightly lighter dark gray for contrast
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); // Subtle shadow for depth
+  max-width: 400px; // Limit the width of the container
+  width: 100%;
+  margin: 0 auto; // Center the container
+  font-family: $font-default;
+
+  // Responsive adjustments
+  @media (max-width: 480px) {
+    padding: 15px;
+    max-width: 100%;
+  }
+  .character-inventory-heading {
+    font-family: $font-default; // Default font
+    font-size: 2rem; // Large heading size
+    font-weight: bold; // Bold weight for emphasis
+    color: $primary-main; // Use primary color (light blue)
+    text-align: center; // Center align the heading
+    width: 100%;
+    text-transform: uppercase; // Uppercase for strong impact
+    margin-bottom: 20px; // Space below the heading
+    letter-spacing: 2px; // Slight spacing between letters for a polished look
+    border-bottom: 3px solid $primary-main; // Line beneath the heading
+    display: inline-block; // To make the border wrap around text width
+    padding-bottom: 5px; // Add space between text and underline
+
+    // Responsive adjustments
+    @media (max-width: 480px) {
+      font-size: 2rem; // Slightly smaller font size on smaller screens
+    }
+  }
+
+  .character-inventory-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; // Full width for proper alignment
+
+    .character-inventory-item {
+      display: flex;
+      justify-content: space-between; // Space between inventory details
+      background: $background-default; // Dark background for items
+      padding: 12px;
+      margin-bottom: 10px; // Space between items
+      border-radius: 6px;
+
+      .character-inventory-item-count,
+      .character-inventory-item-item,
+      .character-inventory-item-weight {
+        font-size: 16px; // Standard size for inventory details
+        color: $text-primary; // Primary text color (white)
+      }
+
+      .character-inventory-item-count {
+        font-weight: bold; // Emphasize the quantity
+        color: $primary-main; // Primary color for count
+      }
+
+      .character-inventory-item-weight {
+        color: $text-secondary; // Muted color for weight
+        font-size: 0.9em; // Slightly smaller for less emphasis
+      }
+    }
+  }
+}
